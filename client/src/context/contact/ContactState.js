@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useCallback } from 'react';
 
 import ContactContext from './contactContext';
 import contactReducer from './contactReducer';
@@ -27,7 +27,7 @@ const ContactState = props => {
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
   // Get contacts
-  const getContacts = async () => {
+  const getContacts = useCallback(async () => {
     try {
       const res = await axios.get('api/contacts');
       dispatch({
@@ -40,7 +40,7 @@ const ContactState = props => {
         payload: err.response.msg
       });
     }
-  };
+  }, []);
 
   // Add contact
   const addContact = async contact => {

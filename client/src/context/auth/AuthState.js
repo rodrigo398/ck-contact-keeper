@@ -28,9 +28,9 @@ const AuthState = props => {
   // Load User
   const loadUser = useCallback(async () => {
     // @todo - load token into globar headers
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-    }
+    //if (localStorage.token) {
+    setAuthToken(localStorage.token);
+    //}
 
     try {
       const res = await axios.get('/api/auth');

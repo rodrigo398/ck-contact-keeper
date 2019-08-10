@@ -7,9 +7,16 @@ const Register = props => {
   const authContext = useContext(AuthContext);
 
   const { setAlert } = alertContext;
-  const { register, error, clearErrors, isAuthenticated } = authContext;
+  const {
+    register,
+    error,
+    clearErrors,
+    isAuthenticated,
+    loadUser
+  } = authContext;
 
   useEffect(() => {
+    loadUser();
     if (isAuthenticated) {
       props.history.push('/');
     }
@@ -20,7 +27,7 @@ const Register = props => {
     }
 
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  }, [error, isAuthenticated, loadUser, props.history]);
 
   const [user, setUser] = useState({
     name: '',
